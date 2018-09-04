@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import Home from './pages/home';
-
+import Terminal from 'terminal-in-react';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="app">
-          <Route exact path="/" component={Home} />
-        </div>
-      </Router>
+      <div className="app">
+        <Terminal
+          color="orange"
+          prompt="orange"
+          backgroundColor="black"
+          barColor="black"
+          allowTabs={false}
+          hideTopBar
+          style={{
+            fontWeight: 'bold',
+            fontSize: '1em',
+            height: '100%',
+            maxHeight: '100%'
+          }}
+          msg="You have been hacked. Enter your credit card details to ???!"
+        />
+      </div>
     );
   }
 }
