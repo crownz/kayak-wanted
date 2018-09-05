@@ -4,5 +4,9 @@ import './index.css';
 import App from './App';
 import { unregister } from './registerServiceWorker';
 
-ReactDOM.hydrate(<App />, document.getElementById('root'));
+const props = window.__INITIAL_DATA__ || {
+    question: 'What is 2 + 2?'
+};
+
+ReactDOM.hydrate(<App {...props} />, document.getElementById('root'));
 unregister();
