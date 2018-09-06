@@ -5,6 +5,12 @@ import './App.css';
 class App extends Component {
   showChallange = question => question;
 
+  questionId = null;
+
+  componentDidMount() {
+    this.questionId = window.location.pathname.replace('/', '');
+  }
+
   state = {
     loading: false
   };
@@ -12,10 +18,24 @@ class App extends Component {
   submitAnswer = answer => {
     return new Promise((resolve, reject) => {
       this.setState({ loading: true }, () =>
-        setTimeout(() => {
-          this.setState({ loading: false });
-          resolve(`${answer} is incorrect answer.`);
-        }, 3000)
+        fetch('/api/answer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify({ hash: this.questionId, answer })
+        })
+          .then(res => res.json())
+          .then(res => {
+            console.log('res:', res);
+            this.setState({ loading: false });
+            resolve('Correct!');
+          })
+          .catch(err => {
+            console.log('error', err);
+            this.setState({ loading: false });
+            resolve(`${answer} is incorrect answer.`);
+          })
       );
     });
   };
