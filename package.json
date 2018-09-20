@@ -17,7 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "server": "nodemon --exec babel-node ./src/server.js --require node_modules/ignore-styles"
+    "server": "nodemon --exec babel-node ./src/server.js --require node_modules/ignore-styles",
+    "server:prod": "babel-node ./src/server.js --require node_modules/ignore-styles"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
