@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Terminal from 'terminal-in-react';
 import './App.css';
 
-const initialQuestion = 'The question is answered. Seek for a new challange!';
+// const initialQuestion = 'The question is answered. Seek for a new challenge!';
 const initialTip = 'We do not have any tips at the moment.';
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       loading: false,
-      question: props.question || initialQuestion,
+      question: props.question,
       nextStepTip: props.nextStepTip || initialTip,
       isQuestionAnswered: props.isQuestionAnswered
     };
@@ -26,7 +26,7 @@ class App extends Component {
   submitAnswer = answer => {
     return new Promise((resolve, reject) => {
       if (this.state.isQuestionAnswered) {
-        return resolve('There are no challanges to answer.');
+        return resolve(this.state.question);
       }
 
       this.setState({ loading: true }, () =>
@@ -39,11 +39,10 @@ class App extends Component {
         })
           .then(res => res.json())
           .then(res => {
-            this.setState({ loading: false, nextStepTip: res.tip, question: initialQuestion, isQuestionAnswered: true });
+            this.setState({ loading: false, nextStepTip: res.tip, question: res.question, isQuestionAnswered: true });
             resolve(`Correct! ${res.tip}`);
           })
           .catch(err => {
-            console.log('error', err);
             this.setState({ loading: false });
             resolve(`${answer} is incorrect answer.`);
           })
@@ -55,8 +54,7 @@ class App extends Component {
   getCurrentQuestion = () => this.state.question;
 
   render() {
-    const { loading, question, nextStepTip } = this.state;
-    console.log('state updated!', this.state);
+    const { loading } = this.state;
 
     return (
       <div className="app">
@@ -76,7 +74,7 @@ class App extends Component {
             maxHeight: '100%'
           }}
           commands={{
-            challange: () => this.getCurrentQuestion(),
+            challenge: () => this.getCurrentQuestion(),
             tip: () => this.getNextStepTip(),
             answer: (userInput, print) => {
               this.submitAnswer(userInput[1]).then(res => {
@@ -85,11 +83,13 @@ class App extends Component {
             }
           }}
           descriptions={{
-            challange: 'Show the challange',
-            answer: 'Submit your answer',
-            tip: 'What should I do next?'
+            show: 'Show the initial message.',
+            clear: 'Clear the screen.',
+            challenge: 'Show current challenge.',
+            answer: 'Type "answer <your answer>" to complete the challenge.',
+            tip: 'Are there any tips?'
           }}
-          msg={'Welcome to mysterious challange. <help>'}
+          msg={'Welcome to a mysterious challenge. Try to solve me! Type "help"'}
         />
       </div>
     );

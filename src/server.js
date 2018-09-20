@@ -53,7 +53,7 @@ app.post('/api/answer', (req, res) => {
 
   if (question && question.answer === payload.answer) {
     peopleState[playerId]++;
-    res.status(200).send({ tip: question.nextStateTip });
+    res.status(200).send({ tip: question.nextStateTip, question: `The challenge has been completed. Seek for a new riddle: ${question.nextStateTip}` });
     return;
   }
 
@@ -95,11 +95,12 @@ app.get('/:id', function(req, res) {
     initialState.question = currentQuestion.question;
   } else if (currentQuestion.state + 1 === state) {
     // user already answered this, give tip to next state.
-    initialState.nextStepTip = currentQuestion.nextStateTip;
+    //initialState.nextStepTip = currentQuestion.nextStateTip;
+    initialState.question = `The challenge has been completed. Seek for a new riddle: ${currentQuestion.nextStateTip}`
     initialState.isQuestionAnswered = true;
   } else if (state === 1) {
-    initialState.nextStepTip = 'To start the challange, look for QR code at the entrance.';
-    initialState.question = 'To start the challange, look for QR code at the entrance.';
+    // initialState.nextStepTip = 'To start the challenge, look for QR code at the entrance.';
+    initialState.question = 'To start the challenge, look for QR code at the entrance.';
     initialState.isQuestionAnswered = true;
   } else {
     // accesing wrong state, error.
