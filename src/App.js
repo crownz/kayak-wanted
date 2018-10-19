@@ -15,7 +15,8 @@ class App extends Component {
       loading: false,
       question: props.question,
       nextStepTip: props.nextStepTip || initialTip,
-      isQuestionAnswered: props.isQuestionAnswered
+      isQuestionAnswered: props.isQuestionAnswered,
+      progress: props.state
     };
   }
 
@@ -39,7 +40,7 @@ class App extends Component {
         })
           .then(res => res.json())
           .then(res => {
-            this.setState({ loading: false, nextStepTip: res.tip, question: res.question, isQuestionAnswered: true });
+            this.setState({ loading: false, nextStepTip: res.tip, question: res.question, isQuestionAnswered: true, progress: res.state });
             resolve(`Correct! ${res.tip}`);
           })
           .catch(err => {
@@ -54,11 +55,18 @@ class App extends Component {
   getCurrentQuestion = () => this.state.question;
 
   render() {
-    const { loading } = this.state;
+    const { loading, progress } = this.state;
 
     return (
       <div className="app">
-        {loading && <div style={{ color: 'white' }}>loading...</div>}
+        <div className="progress">
+          <div className="progressInner">
+            <div className="bar" style={{ width: `${progress*20}%`}}>
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
+            </div>
+          </div>
+        </div>
+        {/* state: {this.props.state}/5 */}
         <Terminal
           color="orange"
           prompt="orange"
