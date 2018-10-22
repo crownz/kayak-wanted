@@ -67,6 +67,10 @@ app.post('/api/answer', (req, res) => {
 
   const question = questions[questionHash];
 
+  console.log('correct answer is:', question.answer);
+  console.log('user guessed:', payload.answer);
+  console.log('is correct?', question.answer === payload.answer);
+
   if (question && question.answer === payload.answer) {
     peopleState[playerId]++;
     res.status(200).send({ tip: question.nextStateTip, question: `The challenge has been completed. Seek for a new riddle: ${question.nextStateTip}`, state: peopleState[playerId] });
