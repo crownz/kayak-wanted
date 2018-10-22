@@ -1,6 +1,7 @@
 .app {
   height: 100%;
   background: black;
+  overflow: hidden;
 }
 
 .progress {
