@@ -11,6 +11,10 @@ html {
   background: black;
 }
 
+div {
+  box-sizing: border-box;
+}
+
 .terminal-base {
   height: initial !important;
   min-height: initial !important;
