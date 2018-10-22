@@ -82,14 +82,6 @@ app.get('/:id', function(req, res) {
   console.log('Serving from node!');
   const questionsHash = req.params.id;
 
-  const currentQuestion = questions[questionsHash];
-
-  if (!currentQuestion) {
-    // return error, wrong url.
-    res.status(500).send('YOU DO NOT BELONG HERE!');
-    return;
-  }
-
   let playerId = req.cookies && req.cookies.playerId;
   let state = 1;
 
@@ -106,6 +98,27 @@ app.get('/:id', function(req, res) {
     state
   };
 
+  const currentQuestion = questions[questionsHash];
+
+  // Redirect to current question url, if question hash in the url is incorrect.
+  if (!currentQuestion) {
+    if (state === 6) {
+      res.redirect('/215d6520-040c-4099-8f32-dade1ebd390a');
+    }
+
+    const currentHash = Object.keys(questions).find(key => {
+      return questions[key].state + 1 === state;
+    });
+
+    if (currentHash) {
+      res.redirect(`/${currentHash}`);
+    } else {
+      console.log('failed to find the current hash.');
+      res.redirect('/ffa90155-b7f9-46bb-ae48-5c51c4b93c93');
+    }
+    return;
+  }
+
   console.log('people state', peopleState);
 
   if (currentQuestion.state === state) {
@@ -115,15 +128,17 @@ app.get('/:id', function(req, res) {
   } else if (currentQuestion.state + 1 === state) {
     // user already answered this, give tip to next state.
     initialState.nextStepTip = currentQuestion.nextStateTip;
-    initialState.question = `The challenge has been completed. Seek for a new riddle: ${currentQuestion.nextStateTip}`
+    initialState.question = `The challenge has been completed. Find and scan the next QR code: ${currentQuestion.nextStateTip}`
     initialState.isQuestionAnswered = true;
   } else if (state === 1) {
     // initialState.nextStepTip = 'To start the challenge, look for QR code at the entrance.';
-    initialState.question = 'To start the challenge, look for QR code at the entrance.';
+    initialState.question = 'To start the mysterious challenge, look for QR code at the entrance.';
     initialState.isQuestionAnswered = true;
   } else {
-    // accesing wrong state, error.
-    res.status(500).send('YOU DO NOT BELONG HERE!');
+    const currentHash = Object.keys(questions).find(key => {
+      return questions[key].state + 1 === state;
+    });
+    res.redirect(`/${currentHash}`);
     return;
   }
 
@@ -145,7 +160,7 @@ function htmlTemplate(content, jsBundle, cssBundle, initialState) {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>HACKS.</title>
+      <title>Mysterious Challenge</title>
       <link href="/statics/${cssBundle}" rel="stylesheet">
     </head>
     

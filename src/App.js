@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Terminal from 'terminal-in-react';
 import './App.css';
 
-// const initialQuestion = 'The question is answered. Seek for a new challenge!';
-const initialTip = 'We do not have any tips at the moment.';
+const initialTip = 'Sorry, there are no tips at this moment.';
 
 class App extends Component {
 
@@ -45,7 +44,7 @@ class App extends Component {
           })
           .catch(err => {
             this.setState({ loading: false });
-            resolve(`${answer} is incorrect answer.`);
+            resolve(`${answer} is incorrect. Try again or seek for a tip.`);
           })
       );
     });
@@ -93,11 +92,11 @@ class App extends Component {
           descriptions={{
             show: 'Show the initial message.',
             clear: 'Clear the screen.',
-            challenge: 'Show current challenge.',
+            challenge: 'Show the current challenge.',
             answer: 'Type "answer <your answer>" to complete the challenge.',
             tip: 'Are there any tips?'
           }}
-          msg={'Welcome to a mysterious challenge. Try to solve me! Type "help"'}
+          msg={'Welcome to the mysterious challenge. Try to solve me and win a prize! Type "help"'}
         />
       </div>
     );
