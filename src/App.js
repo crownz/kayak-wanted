@@ -35,6 +35,7 @@ class App extends Component {
           headers: {
             'Content-Type': 'application/json; charset=utf-8'
           },
+          credentials: 'include',
           body: JSON.stringify({ hash: this.questionId, answer })
         })
           .then(res => res.json())
