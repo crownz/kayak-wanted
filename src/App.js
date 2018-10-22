@@ -56,17 +56,17 @@ class App extends Component {
 
   render() {
     const { loading, progress } = this.state;
+    const progressPercent = (progress - 1) * 20;
 
     return (
       <div className="app">
         <div className="progress">
           <div className="progressInner">
-            <div className="bar" style={{ width: `${progress*20}%`}}>
+            <div className="bar" style={{ width: `${progressPercent || 1}%`}}>
               //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
             </div>
           </div>
         </div>
-        {/* state: {this.props.state}/5 */}
         <Terminal
           color="orange"
           prompt="orange"

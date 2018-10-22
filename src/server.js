@@ -13,7 +13,7 @@ import App from './App';
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser());
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 const peopleState = {}; // userid: number
 
