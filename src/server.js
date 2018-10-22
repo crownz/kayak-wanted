@@ -60,6 +60,7 @@ app.post('/api/answer', (req, res) => {
   const payload = req.body;
   const questionHash = payload.hash;
   const playerId = req.cookies.playerId;
+  console.log('cookies', req.cookies);
   if (!playerId || !questionHash) {
     res.status(500).end('YOU DO NOT BELONG HERE!');
     return;
