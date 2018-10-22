@@ -97,7 +97,7 @@ class App extends Component {
             answer: 'Type "answer <your answer>" to complete the challenge.',
             tip: 'Are there any tips?'
           }}
-          msg={'Welcome to the mysterious challenge. Try to solve me and win a prize! Type "help"'}
+          msg={'Welcome to the mysterious challenge. Try to solve me and win a prize! Type "help". Commands are case sensitive!'}
         />
       </div>
     );

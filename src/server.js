@@ -40,16 +40,17 @@ const questions = {
   },
   '7d91890d-7bf2-42d2-bae1-8a4d034adbab': {
     state: 4,
-    answer: '12',
-    question: 'You’re taking care of a friend’s house whilst he’s on vacation. In one room you pull the chain on a ceiling fan, and when it doesn’t respond you realize the house has temporarily lost power. Doh! Unfortunately, you have to leave now, and you’ll be away for several days.\n\nYou know that the fan was in the “off” position before you pulled the chain, and that pulling the chain successively will cycle it through its remaining settings (“high”, “medium”, "low", etc.). You don’t know how many settings there are, but you are sure there aren’t more than four.\n\nHow many times more do you have to pull the chain to ensure that the fan will be in the “off” position when power is restored?',
-    hint: 'Try Lowest Common Multiple',
+    answer: '11',
+    question: 'You’re taking care of a friend’s house whilst he’s on vacation. In one room you pull the chain on a ceiling fan, and when it doesn’t respond you realize the house has temporarily lost power. Doh! Unfortunately, you have to leave now, and you’ll be away for several days.\n\nYou know that the fan was in the “off” position before you pulled the chain, and that pulling the chain successively will cycle it through its remaining settings ("off", “high”, “medium”, etc.). You don’t know how many settings there are, but you are sure there aren’t more than four (including "off").\n\nHow many times more do you have to pull the chain to ensure that the fan will be in the “off” position when power is restored?',
+    hint: 'Try finding a Lowest Common Multiple',
     nextStateTip: 'Find a orange car!'
   },
   '215d6520-040c-4099-8f32-dade1ebd390a': {
     state: 5,
     answer: '4',
     question: 'In a certain country 1/2 of 5 = 3. If the same proportion holds, what is the value of 1/3 of 10?',
-    nextStateTip: 'Congratulation, You have completed the mysterious challenge. Find Kayak booth to get your prize!'
+    hint: 'It looks like a proportion',
+    nextStateTip: 'Congratulation, You have completed the mysterious challenge. Find KAYAK\'s booth to redeem your prize!'
   }
 };
 
@@ -105,7 +106,7 @@ app.get('/:id', function(req, res) {
 
   const currentQuestion = questions[questionsHash];
 
-  // Redirect to current question url, if question hash in the url is incorrect.
+  // Redirect to previous question url, if question hash in the url is incorrect.
   if (!currentQuestion) {
     if (state === 6) {
       res.redirect('/215d6520-040c-4099-8f32-dade1ebd390a');
@@ -137,7 +138,7 @@ app.get('/:id', function(req, res) {
     initialState.isQuestionAnswered = true;
   } else if (state === 1) {
     // initialState.nextStepTip = 'To start the challenge, look for QR code at the entrance.';
-    initialState.question = 'To start the mysterious challenge, look for QR code at the entrance.';
+    initialState.question = 'To start the mysterious challenge, look for a QR code at the entrance.';
     initialState.isQuestionAnswered = true;
   } else {
     const currentHash = Object.keys(questions).find(key => {
