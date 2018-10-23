@@ -23,34 +23,34 @@ const questions = {
     answer: '1/8',
     question: 'I roll three dice, and multiply the three numbers together. What is the probability the total will be odd? (the answer should be formatted like: 1/80)',
     hint: 'To get an odd product, all three dice have to roll odd.',
-    nextStateTip: 'Seek for a new QR code in the parking lot, on a white car.'
+    nextStateTip: 'Find and scan the next QR code by the prize of BBL champions!'
   },
   '0a94f03c-68d3-4058-96fc-c68bfe3325c2': {
     state: 2,
     answer: '28',
     question: 'In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room?',
-    nextStateTip: 'Find a blue car!'
+    nextStateTip: 'Fancy for a beer? Find me at the entrance of Baras 11.'
   },
   'cdfbfcff-2c43-4612-ab4f-e7072ae50983': {
     state: 3,
     answer: '6',
     question: 'If 66 = 2, 999 = 3, 8=2, 0=1, 9696=4, 8123=2, 98=3 and 88=4, then what does 816982 equal?',
     hint: 'o',
-    nextStateTip: 'Find a green car!'
+    nextStateTip: 'I love paintings! Meet me at the end of the art gallery!'
   },
   '7d91890d-7bf2-42d2-bae1-8a4d034adbab': {
     state: 4,
     answer: '11',
     question: 'You’re taking care of a friend’s house whilst he’s on vacation. In one room you pull the chain on a ceiling fan, and when it doesn’t respond you realize the house has temporarily lost power. Doh! Unfortunately, you have to leave now, and you’ll be away for several days.\n\nYou know that the fan was in the “off” position before you pulled the chain, and that pulling the chain successively will cycle it through its remaining settings ("off", “high”, “medium”, etc.). You don’t know how many settings there are, but you are sure there aren’t more than four (including "off").\n\nHow many times more do you have to pull the chain to ensure that the fan will be in the “off” position when power is restored?',
     hint: 'Try finding a Lowest Common Multiple',
-    nextStateTip: 'Find a orange car!'
+    nextStateTip: 'Come and relax with me, under a palm tree!'
   },
   '215d6520-040c-4099-8f32-dade1ebd390a': {
     state: 5,
     answer: '4',
     question: 'In a certain country 1/2 of 5 = 3. If the same proportion holds, what is the value of 1/3 of 10?',
     hint: 'It looks like a proportion',
-    nextStateTip: 'Congratulation, You have completed the mysterious challenge. Find KAYAK\'s booth to redeem your prize!'
+    nextStateTip: 'Congratulation, You have completed the mysterious challenge, you rock!. Find KAYAK\'s booth to redeem your prize!'
   }
 };
 
