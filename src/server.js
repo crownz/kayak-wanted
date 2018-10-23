@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import uuidv4 from 'uuid/v4';
-
+import fs from 'fs';
 
 import manifest from '../build/asset-manifest.json';
 
@@ -15,7 +15,19 @@ app.use(cookieParser());
 app.use(bodyParser());
 const port = process.env.PORT || 5000;
 
-const peopleState = {}; // userid: number
+let peopleState = {}; // userid: number
+
+fs.readFile('state.json', 'utf8', (err, data) => {
+  if (err){
+      console.log('error in read callback', err);
+  } else {
+    try {
+      peopleState = JSON.parse(data);
+    } catch(e) {
+      console.log('failed to parse state', e);
+    }
+  }
+});
 
 const questions = {
   'ffa90155-b7f9-46bb-ae48-5c51c4b93c93': {
@@ -56,6 +68,20 @@ const questions = {
 
 const generateId = () => uuidv4();
 
+const updateStateFile = newState => {
+  try {
+    const newStateString = JSON.stringify(newState);
+    fs.writeFile('state.json', newStateString, 'utf8', (error, data) => {
+      if (error) {
+        console.log('error in write callback', error);
+      }
+      console.log('state saved', data);
+    });
+  } catch(e) {
+    console.log('failed to save player state to file', e);
+  }
+};
+
 app.post('/api/answer', (req, res) => {
   console.log('payload:', req.body);
   const payload = req.body;
@@ -75,6 +101,7 @@ app.post('/api/answer', (req, res) => {
 
   if (question && question.answer === payload.answer) {
     peopleState[playerId]++;
+    updateStateFile(peopleState);
     res.status(200).send({ tip: question.nextStateTip, question: `The challenge has been completed. Seek for a new riddle: ${question.nextStateTip}`, state: peopleState[playerId] });
     return;
   }
@@ -97,6 +124,7 @@ app.get('/:id', function(req, res) {
   } else {
     playerId = generateId();
     peopleState[playerId] = 1;
+    updateStateFile(peopleState);
   }
 
   const initialState = {
