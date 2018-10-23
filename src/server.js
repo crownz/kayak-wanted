@@ -162,7 +162,7 @@ app.get('/:id', function(req, res) {
   } else if (currentQuestion.state + 1 === state) {
     // user already answered this, give tip to next state.
     initialState.nextStepTip = currentQuestion.nextStateTip;
-    initialState.question = `The challenge has been completed. Find and scan the next QR code: ${currentQuestion.nextStateTip}`
+    initialState.question = `The challenge has been completed. Your tip for next step is: ${currentQuestion.nextStateTip}`
     initialState.isQuestionAnswered = true;
   } else if (state === 1) {
     // initialState.nextStepTip = 'To start the challenge, look for QR code at the entrance.';
