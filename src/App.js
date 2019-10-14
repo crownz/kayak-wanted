@@ -83,21 +83,21 @@ class App extends Component {
           }}
           commands={{
             challenge: () => this.getCurrentQuestion(),
-            tip: () => this.getNextStepTip(),
             answer: (userInput, print) => {
               this.submitAnswer(userInput[1]).then(res => {
                 print(res);
               });
-            }
+            },
+            tip: () => this.getNextStepTip(),
           }}
           descriptions={{
             show: 'Show the initial message.',
             clear: 'Clear the screen.',
-            challenge: 'Show the current challenge.',
+            challenge: '* Show the current challenge *',
             answer: 'Type "answer <your answer>" to complete the challenge.',
             tip: 'Are there any tips?'
           }}
-          msg={'Welcome to the mysterious challenge. Try to solve me and win a prize! Type "help". Commands are case sensitive!'}
+          msg={'Welcome to the mysterious challenge. There will be 5 steps you have to pass in order to win a prize. You can track your progress in the bar above. Type "help" to get the instructions. Commands are case sensitive!'}
         />
       </div>
     );
