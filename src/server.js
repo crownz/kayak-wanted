@@ -35,7 +35,7 @@ const questions = {
     answer: '1/8',
     question: 'I roll three dice, and multiply the three numbers together. What is the probability the total will be odd? (the answer should be formatted like: 1/80)',
     hint: 'To get an odd product, all three dice have to roll odd.',
-    nextStateTip: 'Find and scan the next QR code by the prize of BBL champions!'
+    nextStateTip: 'Find and scan the next QR code by the prize of LKL champions!'
   },
   '0a94f03c-68d3-4058-96fc-c68bfe3325c2': {
     state: 2,
@@ -48,14 +48,14 @@ const questions = {
     answer: '6',
     question: 'If 66 = 2, 999 = 3, 8=2, 0=1, 9696=4, 8123=2, 98=3 and 88=4, then what does 816982 equal?',
     hint: 'o',
-    nextStateTip: 'I love paintings! Meet me at the end of the art gallery!'
+    nextStateTip: 'Entrance 005'
   },
   '7d91890d-7bf2-42d2-bae1-8a4d034adbab': {
     state: 4,
     answer: '11',
     question: 'You’re taking care of a friend’s house whilst he’s on vacation. In one room you pull the chain on a ceiling fan, and when it doesn’t respond you realize the house has temporarily lost power. Doh! Unfortunately, you have to leave now, and you’ll be away for several days.\n\nYou know that the fan was in the “off” position before you pulled the chain, and that pulling the chain successively will cycle it through its remaining settings ("off", “high”, “medium”, etc.). You don’t know how many settings there are, but you are sure there aren’t more than four (including "off").\n\nHow many times more do you have to pull the chain to ensure that the fan will be in the “off” position when power is restored?',
     hint: 'Try finding a Lowest Common Multiple',
-    nextStateTip: 'Come and SMALL TALK with me, under a palm tree!'
+    nextStateTip: 'Good music and big stages are my favorite. Find me there!'
   },
   '215d6520-040c-4099-8f32-dade1ebd390a': {
     state: 5,
